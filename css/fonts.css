@@ -1,0 +1,17 @@
+@font-face
+{
+    font-family: 'Abel Regular';
+    src: url('../fonts/abel-regular-webfont.woff');
+}
+
+@font-face
+{
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Regular.ttf');
+}
+
+@font-face
+{
+    font-family: 'Open Sans Light';
+    src: url('../fonts/OpenSans-Light.ttf');
+}

@@ -1,0 +1,49 @@
+.center
+{
+    text-align: center;
+}
+
+.image-md
+{
+    height: 50vh;
+}
+
+@media (orientation: portrait)
+{
+    .image-md
+    {
+        height: auto;
+        width: 65vw;
+    }
+}
+
+.flex-center-all
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#contact-info
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    border: double 3px rgb(0, 138, 218);
+    text-align: center;
+    width: 50%;
+    height: 50%;
+}
+
+#contact-info a
+{
+    color: rgb(0, 132, 255);
+}
+
+#contact-info a:hover
+{
+    text-shadow: 1px 1px 0px rgb(111, 182, 248);
+}

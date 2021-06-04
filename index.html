@@ -1,30 +1,57 @@
-<!DOCTYPE HTML>
-<html>
+<!--
+    This is just the general page layout, content is
+    dynamically loaded into the page through navbar.js
+-->
+<!DOCTYPE html>
+<html lang="en-us">
     <head>
-        <title>A Random Website</title>
-        <link rel="stylesheet" href="styles.css"/>
-        <link rel="stylesheet" href="fonts.css"/>
+        <!-- Meta -->
+        <title>Markus Hernandez</title>
+        <meta charset="utf-8">
+        <!-- Site Styles -->
+        <link rel="stylesheet" href="css/navbar.css"/>
+        <link rel="stylesheet" href="css/fonts.css"/>
+        <link rel="stylesheet" href="css/content.css"/>
+        <!-- Site Scripts -->
+        <script src="js/navbar.js" defer></script>
+        <script src="js/background.js" defer></script>
     </head>
-    <body id="main">
-        <div class="navbar">
-            <a href="index.html">Home</a>
-            <a href="about.html">About Me</a>
-        </div>
-        <div class="contentbox cover">
-            <div class="contentboxtitle">
-                Welcome to My Website
+    <body>
+        <!-- Main Page Layout -->
+        <div id="layout-grid">
+            <!-- Title Area -->
+            <div id="title-bar">
+                <span id="title">
+                    Markus Hernandez
+                </span>
             </div>
-            <p class="textbox">
-                enjoy this filler text
-            </p>
-        </div>
-        <div class="contentbox cover">
-            <div class="contentboxtitle">
-                Box
+            <!-- Navbar -->
+            <div id="sidebar">
+                <div content="content/home.html" class="sidebar-option">
+                    <div>
+                        <img src="images/home.png"/>
+                    </div>
+                    <div>
+                        Home
+                    </div>
+                </div>
+                <div content="content/projects.html" class="sidebar-option">
+                    <div>
+                        <img src="images/app.png"/>
+                    </div>
+                    <div>
+                        Projects
+                    </div>
+                </div>
+                <div content="content/contact.html" class="sidebar-option">
+                    <div>
+                        <img src="images/mail.png"/>
+                    </div>
+                    <div>
+                        Contact
+                    </div>
+                </div>
             </div>
-            <p class="textbox">
-                It's just a box.
-            </p>
         </div>
     </body>
 </html>
