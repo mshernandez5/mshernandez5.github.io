@@ -1,21 +1,25 @@
+/*
+    Shared Page Styles Including Navbar/Titlebar
+*/
+
 :root
 {
-    --edge-bar-size: 7.5vh;
+    --title-bar-size: 2.5em;
+    --side-bar-size: 3em;
     /* Corner Square */
     --corner-bg-color: rgba(255, 255, 255, 0);
     /* Title Bar */
-    --title-bar-bg-color-0: rgba(75, 159, 255, 0.875);
-    --title-bar-bg-color-1: rgba(85, 162, 250, 0.875);
-    --title-bar-bg-color-2: rgba(84, 186, 253, 0.875);
-    --title-bar-font-size: min(6vh, 10vw);
+    --title-bar-bg-color-0: white;
+    --title-bar-bg-color-1: white;
+    --title-bar-bg-color-2: white;
     /* Sidebar */
-    --sidebar-bg-color-0: rgba(153, 214, 255, 0.315);
-    --sidebar-bg-color-1: rgba(192, 223, 241, 0.315);
-    --sidebar-hover-bg-color: rgba(0, 0, 0, 0.5);
+    --sidebar-bg-color-0: rgba(255, 99, 71, 0.925);
+    --sidebar-bg-color-1: rgba(255, 99, 71, 0.74);
+    --sidebar-hover-bg-color: rgba(0, 110, 255, 0.45);
     --sidebar-selected-bg-color: rgba(255, 255, 255, 0.205);
-    --sidebar-expand-width: 300px;
+    --sidebar-expand-width: 10em;
     /* Content */
-    --content-bg-color: rgba(255, 255, 255, 0.955);
+    --content-bg-color: rgba(245, 245, 245, 0.5);
 }
 
 html, body
@@ -25,9 +29,10 @@ html, body
     /* Make Full Space Available */
     width: 100%;
     height: 100%;
+    /* No Overflow / Scroll */
+    overflow: hidden;
     /* Default Font */
     font: 2.5vh 'Abel Regular', sans-serif;
-    color: white;
 }
 
 a
@@ -42,12 +47,14 @@ a
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-rows: var(--edge-bar-size);
-    grid-template-columns: var(--edge-bar-size) var(--sidebar-expand-width);
+    grid-template-rows: var(--title-bar-size);
+    grid-template-columns: var(--side-bar-size) var(--sidebar-expand-width);
 }
 
 #corner
 {
+    /* Hidden On Desktop Browsers */
+    visibility: hidden;
     /* Self Positioning */
     grid-row: 1;
     grid-column: 1;
@@ -60,14 +67,19 @@ a
     /** Self Positioning */
     grid-row: 1;
     grid-column: 2 / span 2;
+    /* Child Positioning */
+    display: flex;
+    align-items: center;
     /* Style */
     background: linear-gradient(to bottom, var(--title-bar-bg-color-0), var(--title-bar-bg-color-1), var(--title-bar-bg-color-2));
+    box-shadow: 0px 2px 5px -3px dimgray;
 }
 
 #title
 {
     margin-left: 15px;
-    font-size: var(--title-bar-font-size);
+    color: darkblue;
+    font: min(5vh, 5vw) 'Bungee Hairline', sans-serif;
 }
 
 #sidebar
@@ -81,6 +93,9 @@ a
     /* Style */
     background: linear-gradient(220deg, var(--sidebar-bg-color-0), var(--sidebar-bg-color-1));
     transition: all 0.2s ease-out;
+    box-shadow: 2px 0px 5px -3px dimgray;
+    text-shadow: 1px 1px dimgray;
+    color: white;
 }
 
 #sidebar:hover
@@ -95,7 +110,7 @@ a
     overflow: hidden;
     /* Size */
     width: 100%;
-    height: var(--edge-bar-size);
+    height: var(--side-bar-size);
     display: flex;
     flex-direction: row;
 }
@@ -115,8 +130,8 @@ a
 
 .sidebar-option > div:first-of-type
 {
-    min-width: var(--edge-bar-size);
-    max-width: var(--edge-bar-size);
+    min-width: var(--side-bar-size);
+    max-width: var(--side-bar-size);
 }
 
 .sidebar-option > div:nth-of-type(2)
@@ -139,8 +154,46 @@ a
     /* Self Positioning */
     grid-row: 2;
     grid-column: 2 / span 2;
+    overflow-y: auto;
     /* Default Style */
     background-color: var(--content-bg-color);
-    font: 20px 'Open Sans Light', sans-serif;
+    font: 20px 'Abel Regular', sans-serif;
     color: black;
+}
+
+#background-img
+{
+    position: absolute;
+    z-index: -100;
+    width: 100%;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 1000px)
+{
+    :root
+    {
+        --title-bar-size: 3em;
+        --side-bar-size: 3em;
+    }
+
+    #corner
+    {
+        visibility: visible;
+    }
+
+    #title
+    {
+        font-weight: bold;
+    }
+
+    #sidebar
+    {
+        visibility: hidden;
+    }
+
+    #content
+    {
+        grid-column: 1 / span 3;
+    }
 }

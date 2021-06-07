@@ -1,4 +1,4 @@
-// Flowing Gradient Background
+// Background Script
 
 let background = function()
 {
@@ -11,55 +11,106 @@ let background = function()
         }
     }
 
-    class Stop
-    {
-        constructor(percent, color)
-        {
-            this.percent = percent;
-            this.color = color;
-        }
-    }
+    // Canvas
+    let canvas;
+    let ctx;
 
-    // Create Background Canvas & Assign Attributes
-    let canvas = document.createElement("canvas");
-    canvas.style.position = "fixed";
-    canvas.style.top = "0";
-    canvas.style.left = "0";
-    canvas.style.zIndex = "-1";
-    canvas.style.width = "100%";
-    canvas.style.height = "100%";
-    document.body.appendChild(canvas);
-
-    // Configure Canvas & Get 2D Context
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-    let ctx = canvas.getContext("2d");
+    // Mouse Position
+    let mouseX = 0;
+    let mouseY = 0;
 
     // Fills
-    const bgFill = "lightslategray";
-    let gdFill = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, canvas.width / 4, canvas.width / 2, canvas.height / 2, canvas.width / 2);
-    gdFill.addColorStop(0, "white");
-    gdFill.addColorStop(1, "lightblue");
+    let image;
+    let lineColor = [0, 0, 0];
 
-    // Initialize Points
-    let stops = [];
-    for (let p = 0; p <= 100; p += 10)
-    {   
-        y = 100;
-        stops.push(new Stop(p / 100, y));
-    }
+    // Line Ending Points
+    let destinations;
 
-    function loop(timeStamp)
+    function loop()
     {
         render();
         window.requestAnimationFrame(loop);
     }
 
-    function render()
+    function updateMouse(event)
     {
-        ctx.fillStyle = bgFill;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        mouseX = event.clientX;
+        mouseY = event.clientY;
     }
 
-    window.requestAnimationFrame(loop);
+    function render()
+    {
+        // Clear
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Background Image
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+        // Pick Color For Lines
+        let imageColor = ctx.getImageData(mouseX, mouseY, 1, 1).data;
+        lineColor[0] = (3 * lineColor[0] + imageColor[0]) / 4;
+        lineColor[1] = (3 * lineColor[1] + imageColor[1]) / 4;
+        lineColor[2] = (3 * lineColor[2] + imageColor[2]) / 4;
+
+        // Create Dynamic Gradient
+        let gdFill = ctx.createRadialGradient(mouseX, mouseY, canvas.width / 8, mouseX, mouseY, canvas.width / 4);
+        gdFill.addColorStop(0, `rgba(${lineColor[0]}, ${lineColor[1]}, ${lineColor[2]}, 0.5)`);
+        gdFill.addColorStop(1, "rgba(255, 255, 255, 0.3)");
+
+        // Draw Lines
+        ctx.strokeStyle = gdFill;
+        ctx.beginPath();
+        for (let point of destinations)
+        {
+            ctx.moveTo(mouseX, mouseY);
+            ctx.lineTo(point.x, point.y);
+        }
+        ctx.stroke();
+    }
+
+    function reset()
+    {
+        // Configure Canvas & Get 2D Context
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        ctx = canvas.getContext("2d");
+
+        // Initial State
+        destinations = [];
+        const lineSpacing = 50;
+        for (let x = 0; x <= document.body.clientWidth; x += lineSpacing)
+        {   
+            destinations.push(new Point(x, 0));
+            destinations.push(new Point(x, document.body.clientHeight));
+        }
+        for (let y = 0; y <= document.body.clientHeight; y += lineSpacing)
+        {   
+            destinations.push(new Point(0, y));
+            destinations.push(new Point(document.body.clientWidth, y));
+        }
+    }
+
+    function init()
+    {
+        // Get Background Image
+        image = document.getElementById("background-img");
+
+        // Create Background Canvas & Assign Attributes
+        canvas = document.createElement("canvas");
+        canvas.style.position = "fixed";
+        canvas.style.top = "0";
+        canvas.style.left = "0";
+        canvas.style.zIndex = "-1";
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        document.body.appendChild(canvas);
+
+        reset();
+
+        window.requestAnimationFrame(loop);
+        window.addEventListener('mousemove', updateMouse);
+        window.addEventListener('resize', reset);
+    }
+
+    window.addEventListener('load', init)
 }();

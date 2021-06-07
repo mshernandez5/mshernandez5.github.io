@@ -25,6 +25,30 @@
     justify-content: center;
 }
 
+/* Home */
+
+.text-intro-title
+{
+    padding: 10px;
+    background: rgba(128, 128, 128, 0.9);
+    color: white;
+    font-size: 100px;
+}
+
+.text-intro-desc
+{
+    padding: 0 10px 0 10px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 34px;
+}
+
+#intro-box
+{
+    padding: 50px;
+}
+
+/* Contact */
+
 #contact-info
 {
     display: flex;
@@ -32,10 +56,15 @@
     align-items: center;
     justify-content: center;
     gap: 0;
-    border: double 3px rgb(0, 138, 218);
     text-align: center;
     width: 50%;
     height: 50%;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+#contact-info:hover
+{
+    border-color: slategray;
 }
 
 #contact-info a
@@ -45,5 +74,5 @@
 
 #contact-info a:hover
 {
-    text-shadow: 1px 1px 0px rgb(111, 182, 248);
+    text-shadow: 1px 1px 1px rgb(173, 199, 224);
 }
