@@ -19,7 +19,7 @@
     --sidebar-selected-bg-color: rgba(255, 255, 255, 0.205);
     --sidebar-expand-width: 10em;
     /* Content */
-    --content-bg-color: rgba(245, 245, 245, 0.5);
+    --content-bg-color: rgba(245, 245, 245, 0.2);
 }
 
 html, body
