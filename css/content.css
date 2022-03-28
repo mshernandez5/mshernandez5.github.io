@@ -29,8 +29,8 @@
 
 .text-intro-title
 {
-    padding: 10px;
-    background: rgba(128, 128, 128, 0.75);
+    padding: 0 10px 0 10px;
+    background: rgba(128, 128, 128, 0.685);
     color: white;
     font-size: 100px;
 }
@@ -38,41 +38,30 @@
 .text-intro-desc
 {
     padding: 0 10px 0 10px;
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.555);
     font-size: 34px;
 }
 
-#intro-box
+.card-box
 {
     padding: 50px;
 }
 
+.glass-box
+{
+    background-color: rgba(245, 245, 245, 0.185);
+    box-shadow: rgba(0, 0, 0, 0.185) 0px 0px 5px;
+}
+
 /* Contact */
 
-#contact-info
+.social-img-container
 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    text-align: center;
-    width: 50%;
-    height: 50%;
-    background: rgba(255, 255, 255, 0.9);
+    display: inline;
+    padding: 5px;
 }
 
-#contact-info:hover
+.social-img-container > img
 {
-    border-color: slategray;
-}
-
-#contact-info a
-{
-    color: rgb(0, 132, 255);
-}
-
-#contact-info a:hover
-{
-    text-shadow: 1px 1px 1px rgb(173, 199, 224);
+    width: 20px;
 }

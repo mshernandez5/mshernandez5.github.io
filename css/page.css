@@ -13,8 +13,8 @@
     --title-bar-bg-color-1: white;
     --title-bar-bg-color-2: white;
     /* Sidebar */
-    --sidebar-bg-color-0: rgba(255, 99, 71, 0.925);
-    --sidebar-bg-color-1: rgba(255, 99, 71, 0.74);
+    --sidebar-bg-color-0: rgba(0, 110, 255, 0.295);
+    --sidebar-bg-color-1: rgba(0, 110, 255, 0);
     --sidebar-hover-bg-color: rgba(0, 110, 255, 0.45);
     --sidebar-selected-bg-color: rgba(255, 255, 255, 0.205);
     --sidebar-expand-width: 10em;

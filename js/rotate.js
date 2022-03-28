@@ -10,7 +10,7 @@ let rotate = function()
     let mouseY = 0;
 
     // Rotation Constraint
-    const constrain = 25;
+    const constrain = 85;
     const perspective = 1000;
 
     function loop()
